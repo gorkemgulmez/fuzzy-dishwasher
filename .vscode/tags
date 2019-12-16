@@ -1,0 +1,73 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+ApplicationWindow	../window.py	/^class ApplicationWindow(tk.Frame):$/;"	kind:class	line:4
+__init__	../window.py	/^    def __init__(self, master=None):$/;"	kind:member	line:7
+alt_pompa	../dishwasher.py	/^alt_pompa = np.arange(2100, 3501, 1)$/;"	kind:variable	line:19
+alt_pompa_cd	../dishwasher.py	/^alt_pompa_cd = fuzz.trimf(alt_pompa, [2100, 2100, 2400])$/;"	kind:variable	line:58
+alt_pompa_cy	../dishwasher.py	/^alt_pompa_cy = fuzz.trimf(alt_pompa, [3200, 3500, 3500])$/;"	kind:variable	line:62
+alt_pompa_d	../dishwasher.py	/^alt_pompa_d = fuzz.trimf(alt_pompa, [2300, 2500, 2700])$/;"	kind:variable	line:59
+alt_pompa_o	../dishwasher.py	/^alt_pompa_o = fuzz.trimf(alt_pompa, [2600, 2800, 3000])$/;"	kind:variable	line:60
+alt_pompa_y	../dishwasher.py	/^alt_pompa_y = fuzz.trimf(alt_pompa, [2900, 3100, 3300])$/;"	kind:variable	line:61
+app	../window.py	/^app = ApplicationWindow(master=root)$/;"	kind:variable	line:88
+bulasik_cins_guc	../dishwasher.py	/^bulasik_cins_guc = fuzz.trimf(x_bulasik_cins, [65,100,100])$/;"	kind:variable	line:32
+bulasik_cins_has	../dishwasher.py	/^bulasik_cins_has = fuzz.trimf(x_bulasik_cins, [0,0,35])$/;"	kind:variable	line:30
+bulasik_cins_kar	../dishwasher.py	/^bulasik_cins_kar = fuzz.trimf(x_bulasik_cins, [15,50,85])$/;"	kind:variable	line:31
+bulasik_miktar_az	../dishwasher.py	/^bulasik_miktar_az = fuzz.trimf(x_bulasik_miktar, [0,0,35])$/;"	kind:variable	line:22
+bulasik_miktar_cok	../dishwasher.py	/^bulasik_miktar_cok = fuzz.trimf(x_bulasik_miktar, [65,100,100])$/;"	kind:variable	line:24
+bulasik_miktar_ort	../dishwasher.py	/^bulasik_miktar_ort = fuzz.trimf(x_bulasik_miktar, [15,50,85])$/;"	kind:variable	line:23
+calculate	../dishwasher.py	/^def calculate():$/;"	kind:function	line:73
+calculate	../window.py	/^    def calculate(self):$/;"	kind:member	line:72
+create_widgets	../window.py	/^    def create_widgets(self):$/;"	kind:member	line:13
+deterjan_miktar	../dishwasher.py	/^deterjan_miktar = np.arange(0,101,1)$/;"	kind:variable	line:16
+deterjan_miktar_a	../dishwasher.py	/^deterjan_miktar_a = fuzz.trimf(deterjan_miktar, [7.5,25,42.5])$/;"	kind:variable	line:43
+deterjan_miktar_c	../dishwasher.py	/^deterjan_miktar_c = fuzz.trimf(deterjan_miktar, [57.5,75,92.5])$/;"	kind:variable	line:45
+deterjan_miktar_ca	../dishwasher.py	/^deterjan_miktar_ca = fuzz.trimf(deterjan_miktar, [0,0,17.5])$/;"	kind:variable	line:42
+deterjan_miktar_cf	../dishwasher.py	/^deterjan_miktar_cf = fuzz.trimf(deterjan_miktar, [82.5,100,100])$/;"	kind:variable	line:46
+deterjan_miktar_n	../dishwasher.py	/^deterjan_miktar_n = fuzz.trimf(deterjan_miktar, [32.5,50,67.5])$/;"	kind:variable	line:44
+dishwasher.py	../dishwasher.py	1;"	kind:file	line:1
+dsh	../window.py	/^import dishwasher as dsh$/;"	kind:namespace	line:2
+fuzz	../dishwasher.py	/^import skfuzzy as fuzz$/;"	kind:namespace	line:2
+input_cins	../dishwasher.py	/^input_cins = 0$/;"	kind:variable	line:68
+input_kirlilik	../dishwasher.py	/^input_kirlilik = 0$/;"	kind:variable	line:67
+input_miktar	../dishwasher.py	/^input_miktar = 0$/;"	kind:variable	line:66
+input_plot	../dishwasher.py	/^def input_plot() :$/;"	kind:function	line:288
+kirlilik_derece_az	../dishwasher.py	/^kirlilik_derece_az = fuzz.trimf(x_kirlilik_derece, [0,0,35])$/;"	kind:variable	line:26
+kirlilik_derece_cok	../dishwasher.py	/^kirlilik_derece_cok = fuzz.trimf(x_kirlilik_derece, [65,100,100])$/;"	kind:variable	line:28
+kirlilik_derece_ort	../dishwasher.py	/^kirlilik_derece_ort = fuzz.trimf(x_kirlilik_derece, [15,50,85])$/;"	kind:variable	line:27
+left_panel	../window.py	/^    def left_panel(self):$/;"	kind:member	line:23
+np	../dishwasher.py	/^import numpy as np$/;"	kind:namespace	line:1
+output_plot	../dishwasher.py	/^def output_plot() :$/;"	kind:function	line:315
+plt	../dishwasher.py	/^import matplotlib.pylab as plt$/;"	kind:namespace	line:4
+plt	../dishwasher.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:6
+right_panel	../window.py	/^    def right_panel(self):$/;"	kind:member	line:49
+root	../window.py	/^root = tk.Tk()$/;"	kind:variable	line:86
+show_result_3d	../dishwasher.py	/^def show_result_3d():$/;"	kind:function	line:413
+show_result_plot	../dishwasher.py	/^def show_result_plot():$/;"	kind:function	line:359
+su_sicaklik	../dishwasher.py	/^su_sicaklik = np.arange(35,71,1)$/;"	kind:variable	line:17
+su_sicaklik_dus	../dishwasher.py	/^su_sicaklik_dus = fuzz.trimf(su_sicaklik, [35,35,50])$/;"	kind:variable	line:48
+su_sicaklik_nor	../dishwasher.py	/^su_sicaklik_nor = fuzz.trimf(su_sicaklik, [37.5,52,67.5])$/;"	kind:variable	line:49
+su_sicaklik_yuk	../dishwasher.py	/^su_sicaklik_yuk = fuzz.trimf(su_sicaklik, [55,71,71])$/;"	kind:variable	line:50
+tk	../window.py	/^import tkinter as tk$/;"	kind:namespace	line:1
+ust_pompa	../dishwasher.py	/^ust_pompa = np.arange(2100, 3501, 1)$/;"	kind:variable	line:18
+ust_pompa_cd	../dishwasher.py	/^ust_pompa_cd = fuzz.trimf(ust_pompa, [2100, 2100, 2400])$/;"	kind:variable	line:52
+ust_pompa_cy	../dishwasher.py	/^ust_pompa_cy = fuzz.trimf(ust_pompa, [3200, 3500, 3500])$/;"	kind:variable	line:56
+ust_pompa_d	../dishwasher.py	/^ust_pompa_d = fuzz.trimf(ust_pompa, [2300, 2500, 2700])$/;"	kind:variable	line:53
+ust_pompa_o	../dishwasher.py	/^ust_pompa_o = fuzz.trimf(ust_pompa, [2600, 2800, 3000])$/;"	kind:variable	line:54
+ust_pompa_y	../dishwasher.py	/^ust_pompa_y = fuzz.trimf(ust_pompa, [2900, 3100, 3300])$/;"	kind:variable	line:55
+window.py	../window.py	1;"	kind:file	line:1
+x_bulasik_cins	../dishwasher.py	/^x_bulasik_cins = np.arange(0,101,1)$/;"	kind:variable	line:12
+x_bulasik_miktar	../dishwasher.py	/^x_bulasik_miktar = np.arange(0,101,1)$/;"	kind:variable	line:10
+x_kirlilik_derece	../dishwasher.py	/^x_kirlilik_derece = np.arange(0,101,1)$/;"	kind:variable	line:11
+yikama_zaman	../dishwasher.py	/^yikama_zaman = np.arange(30,161,1)$/;"	kind:variable	line:15
+yikama_zaman_ck	../dishwasher.py	/^yikama_zaman_ck = fuzz.trimf(yikama_zaman, [30,30,60])$/;"	kind:variable	line:36
+yikama_zaman_cu	../dishwasher.py	/^yikama_zaman_cu = fuzz.trimf(yikama_zaman, [130,160,160])$/;"	kind:variable	line:40
+yikama_zaman_k	../dishwasher.py	/^yikama_zaman_k = fuzz.trimf(yikama_zaman, [40,65,90])$/;"	kind:variable	line:37
+yikama_zaman_o	../dishwasher.py	/^yikama_zaman_o = fuzz.trimf(yikama_zaman, [70,95,120])$/;"	kind:variable	line:38
+yikama_zaman_u	../dishwasher.py	/^yikama_zaman_u = fuzz.trimf(yikama_zaman, [100,125,150])$/;"	kind:variable	line:39
+zaman_aggregated	../dishwasher.py	/^zaman_aggregated = deterjan_aggregated = sicaklik_aggregated = alt_pompa_aggregated = ust_pompa_/;"	kind:variable	line:71
+zaman_defuzz	../dishwasher.py	/^zaman_defuzz = zaman_activation = deterjan_defuzz = deterjan_activation = sicaklik_defuzz = sica/;"	kind:variable	line:70

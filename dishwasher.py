@@ -410,35 +410,6 @@ def show_result_plot():
     plt.tight_layout()
     plt.show()
 
-def oshow_result_3d():
-    global input_kirlilik, input_miktar, input_cins
-    unsampled = np.linspace(0, 100, 10)
-    sim_x, sim_y = np.meshgrid(unsampled, unsampled)
-    sim_z = np.zeros_like(sim_x)
-    for i in range(10):
-        for j in range(10):
-            input_cins = sim_x[i, j]
-            input_kirlilik = sim_y[i, j]
-            calculate()
-            sim_z[i, j] = ust_pompa_defuzz
-
-    fig = plt.figure(figsize=(8, 8))
-    ax = fig.add_subplot(111, projection='3d')
-    
-    ax.set_xlabel('Dayanıklılık', fontsize=15)
-    ax.set_ylabel('Kirlilik', fontsize=15)
-    ax.set_zlabel('Deterjan Miktarı', fontsize=15)
-
-    surf = ax.plot_surface(sim_x, sim_y, sim_z, rstride=1, cstride=1, cmap='viridis',
-                        linewidth=0.4, antialiased=True)
-
-    cset = ax.contourf(sim_x, sim_y, sim_z, zdir='z', offset=-2.5, cmap='viridis', alpha=0.5)
-    cset = ax.contourf(sim_x, sim_y, sim_z, zdir='x', offset=3, cmap='viridis', alpha=0.5)
-    cset = ax.contourf(sim_x, sim_y, sim_z, zdir='y', offset=3, cmap='viridis', alpha=0.5)
-
-    ax.view_init(30, 200)
-    plt.show()
-
 def show_result_3d():
     global input_kirlilik, input_miktar, input_cins
     unsampled = np.linspace(0, 100, 10)
@@ -556,3 +527,33 @@ def show_result_3d():
 #output_plot()
 #show_result_plot()
 #show_result_3d()
+"""
+def oshow_result_3d():
+    global input_kirlilik, input_miktar, input_cins
+    unsampled = np.linspace(0, 100, 10)
+    sim_x, sim_y = np.meshgrid(unsampled, unsampled)
+    sim_z = np.zeros_like(sim_x)
+    for i in range(10):
+        for j in range(10):
+            input_cins = sim_x[i, j]
+            input_kirlilik = sim_y[i, j]
+            calculate()
+            sim_z[i, j] = ust_pompa_defuzz
+
+    fig = plt.figure(figsize=(8, 8))
+    ax = fig.add_subplot(111, projection='3d')
+    
+    ax.set_xlabel('Dayanıklılık', fontsize=15)
+    ax.set_ylabel('Kirlilik', fontsize=15)
+    ax.set_zlabel('Deterjan Miktarı', fontsize=15)
+
+    surf = ax.plot_surface(sim_x, sim_y, sim_z, rstride=1, cstride=1, cmap='viridis',
+                        linewidth=0.4, antialiased=True)
+
+    cset = ax.contourf(sim_x, sim_y, sim_z, zdir='z', offset=-2.5, cmap='viridis', alpha=0.5)
+    cset = ax.contourf(sim_x, sim_y, sim_z, zdir='x', offset=3, cmap='viridis', alpha=0.5)
+    cset = ax.contourf(sim_x, sim_y, sim_z, zdir='y', offset=3, cmap='viridis', alpha=0.5)
+
+    ax.view_init(30, 200)
+    plt.show()
+"""

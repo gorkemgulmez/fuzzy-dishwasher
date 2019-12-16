@@ -16,21 +16,24 @@ class ApplicationWindow(tk.Frame):
         
         self.left_panel()
         self.right_panel()
+        self.space = tk.Label(self, text="                                                     ")
+        self.space.pack(side="top")
 
     # TODO: Left panel will include: member_funcs, plots,  etc.
     def left_panel(self):
-        self.miktar_label = tk.Label(self, text="Bulaşık Miktarı %")
-        self.miktar_input = tk.Spinbox(self, from_=1, to=100)
-        self.kirlilik_label = tk.Label(self, text="Kirlilik Derecesi %")
-        self.kirlilik_input = tk.Spinbox(self, from_=1, to=100)
-        self.cins_label = tk.Label(self, text="Bulaşık Cinsi(Dayanıklılık) %")
-        self.cins_input = tk.Spinbox(self, from_=1, to=100)
+        self.left = tk.Frame(self,)
+        self.miktar_label = tk.Label(self.left, text="Bulaşık Miktarı %")
+        self.miktar_input = tk.Spinbox(self.left, from_=1, to=100)
+        self.kirlilik_label = tk.Label(self.left, text="Kirlilik Derecesi %")
+        self.kirlilik_input = tk.Spinbox(self.left, from_=1, to=100)
+        self.cins_label = tk.Label(self.left, text="Bulaşık Cinsi(Dayanıklılık) %")
+        self.cins_input = tk.Spinbox(self.left, from_=1, to=100)
 
-        self.show_input_MF_button = tk.Button(self, text="Giriş Üyelik Fonksiyonları", command=dsh.input_plot)
-        self.show_output_MF_button = tk.Button(self, text="Çıkış Üyelik Fonsiyonları", command=dsh.output_plot)
-        self.hesapla = tk.Button(self, text="Hesapla", command=self.calculate)
+        self.show_input_MF_button = tk.Button(self.left, text="Giriş Üyelik Fonksiyonları", command=dsh.input_plot)
+        self.show_output_MF_button = tk.Button(self.left, text="Çıkış Üyelik Fonsiyonları", command=dsh.output_plot)
+        self.hesapla = tk.Button(self.left, text="Hesapla", command=self.calculate)
         
-        
+        self.left.pack(side="left")
         self.miktar_label.pack()
         self.miktar_input.pack()
         self.kirlilik_label.pack()
@@ -46,16 +49,17 @@ class ApplicationWindow(tk.Frame):
     def right_panel(self):
         #self.zaman_label_text = StringVar()
         #self.zaman_label_text.set("Zaman")
-
-        self.zaman_label = tk.Label(self, text="Zaman Output")
-        self.deterjan_label = tk.Label(self, text="Deterjan Output")
-        self.sicaklik_label = tk.Label(self, text="Su Sıcaklığı Output")
-        self.alt_label = tk.Label(self, text="Alt Pompa Output")
-        self.ust_label = tk.Label(self, text="Üst Pompa Output")
+        self.right = tk.Frame(self)
+        self.zaman_label = tk.Label(self.right, text="Zaman ")
+        self.deterjan_label = tk.Label(self.right, text="Deterjan ")
+        self.sicaklik_label = tk.Label(self.right, text="Su Sıcaklığı ")
+        self.alt_label = tk.Label(self.right, text="Alt Pompa ")
+        self.ust_label = tk.Label(self.right, text="Üst Pompa ")
         
-        self.show_result_plot_button = tk.Button(self, text="Sonuç Gösterimi", command=dsh.show_result_plot)
-        self.plot_3d_button = tk.Button(self, text="3B Gösterim", command=dsh.show_result_3d)
+        self.show_result_plot_button = tk.Button(self.right, text="Sonuç Gösterimi", command=dsh.show_result_plot)
+        self.plot_3d_button = tk.Button(self.right, text="3B Gösterim", command=dsh.show_result_3d)
         
+        self.right.pack(side="right")
         self.zaman_label.pack()
         self.deterjan_label.pack()
         self.sicaklik_label.pack()
@@ -71,16 +75,16 @@ class ApplicationWindow(tk.Frame):
         dsh.input_kirlilik = float(self.kirlilik_input.get())
         dsh.input_cins = float(self.cins_input.get())
         dsh.calculate()
-        self.zaman_label["text"]= "Zaman: "+ str(dsh.zaman_defuzz)
-        self.deterjan_label["text"] = "Deterjan: " + str(dsh.deterjan_defuzz)
-        self.sicaklik_label["text"] = "Su Sıcaklığı: " + str(dsh.sicaklik_defuzz)
-        self.alt_label["text"] = "Alt Pompa: " + str(dsh.alt_pompa_defuzz)
-        self.ust_label["text"] = "Üst Pompa: " + str(dsh.ust_pompa_defuzz)
+        self.zaman_label["text"]= "Zaman: "+ str(round(dsh.zaman_defuzz, 2)) + "dk"
+        self.deterjan_label["text"] = "Deterjan: " + str(round(dsh.deterjan_defuzz, 2)) + "%"
+        self.sicaklik_label["text"] = "Su Sıcaklığı: " + str(round(dsh.sicaklik_defuzz, 2)) + "C"
+        self.alt_label["text"] = "Alt Pompa: " + str(round(dsh.alt_pompa_defuzz, 2))
+        self.ust_label["text"] = "Üst Pompa: " + str(round(dsh.ust_pompa_defuzz, 2))
         
 
 #window settings
 root = tk.Tk()
-root.geometry("500x500+700+300")
+root.geometry("700x300+700+300")
 app = ApplicationWindow(master=root)
 app.mainloop()
 

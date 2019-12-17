@@ -78,12 +78,13 @@ class ApplicationWindow(tk.Frame):
         self.zaman_label["text"]= "Zaman: "+ str(round(dsh.zaman_defuzz, 2)) + "dk"
         self.deterjan_label["text"] = "Deterjan: " + str(round(dsh.deterjan_defuzz, 2)) + "%"
         self.sicaklik_label["text"] = "Su Sıcaklığı: " + str(round(dsh.sicaklik_defuzz, 2)) + "C"
-        self.alt_label["text"] = "Alt Pompa: " + str(round(dsh.alt_pompa_defuzz, 2))
-        self.ust_label["text"] = "Üst Pompa: " + str(round(dsh.ust_pompa_defuzz, 2))
+        self.alt_label["text"] = "Alt Pompa: " + str(round(dsh.alt_pompa_defuzz, 2)) + "dvr/dk"
+        self.ust_label["text"] = "Üst Pompa: " + str(round(dsh.ust_pompa_defuzz, 2)) + "dvr/dk"
         
 
 #window settings
 root = tk.Tk()
+root.title("Bulanık Mantık İle Bulaşık Makinesi Uygulaması")
 root.geometry("700x300+700+300")
 app = ApplicationWindow(master=root)
 app.mainloop()

@@ -6,6 +6,7 @@ import matplotlib.pylab as plt
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D  # Required for 3D plotting
 
+# Aralık tanımlanması
 # Input
 x_bulasik_miktar = np.arange(0,101,1)
 x_kirlilik_derece = np.arange(0,101,1)
@@ -18,7 +19,7 @@ su_sicaklik = np.arange(35,71,1)
 ust_pompa = np.arange(2100, 3501, 1)
 alt_pompa = np.arange(2100, 3501, 1)
 
-# Input MF
+# Input MF Üyelik Fonksiyonu
 bulasik_miktar_az = fuzz.trimf(x_bulasik_miktar, [0,0,35])
 bulasik_miktar_ort = fuzz.trimf(x_bulasik_miktar, [15,50,85])
 bulasik_miktar_cok = fuzz.trimf(x_bulasik_miktar, [65,100,100])
@@ -31,7 +32,7 @@ bulasik_cins_has = fuzz.trimf(x_bulasik_cins, [0,0,35])
 bulasik_cins_kar = fuzz.trimf(x_bulasik_cins, [15,50,85])
 bulasik_cins_guc = fuzz.trimf(x_bulasik_cins, [65,100,100])
 
-# Output MF
+# Output MF Üyelik Fonksiyonu
 # cok kısa, kısa, orta, uzun, cok uzun
 yikama_zaman_ck = fuzz.trimf(yikama_zaman, [30,30,60])
 yikama_zaman_k = fuzz.trimf(yikama_zaman, [40,65,90])
@@ -66,7 +67,7 @@ alt_pompa_cy = fuzz.trimf(alt_pompa, [3200, 3500, 3500])
 input_miktar = 0
 input_kirlilik = 0
 input_cins = 0
-# Sonuçlar (global olarak tanımlanmalı)
+# Sonuçlar (global olarak) tanımlanmalı
 zaman_defuzz = zaman_activation = deterjan_defuzz = deterjan_activation = sicaklik_defuzz = sicaklik_activation = alt_pompa_defuzz = alt_pompa_activation = ust_pompa_defuzz = ust_pompa_activation = 0
 zaman_aggregated = deterjan_aggregated = sicaklik_aggregated = alt_pompa_aggregated = ust_pompa_aggregated = 0
 
@@ -75,8 +76,9 @@ def calculate():
     global zaman_activation, sicaklik_activation, deterjan_activation, ust_pompa_activation, alt_pompa_activation
     global zaman_defuzz, sicaklik_defuzz, deterjan_defuzz, ust_pompa_defuzz, alt_pompa_defuzz
     
-    # Define and Apply Rule Base (Kural Tabanı)
-    miktar_level_az  = fuzz.interp_membership(x_bulasik_miktar, bulasik_miktar_az, input_miktar)
+    # Üyelik Değerleri Bulunması #bulanıklaştırma
+    #girilen değere göre giriş üyelik fonksiyonlarının değerinin bulunması
+    miktar_level_az  = fuzz.interp_membership(x_bulasik_miktar, bulasik_miktar_az, input_miktar) 
     miktar_level_ort = fuzz.interp_membership(x_bulasik_miktar, bulasik_miktar_ort, input_miktar)
     miktar_level_cok = fuzz.interp_membership(x_bulasik_miktar, bulasik_miktar_cok, input_miktar)
     kirlilik_level_az  = fuzz.interp_membership(x_kirlilik_derece, kirlilik_derece_az, input_kirlilik)
@@ -86,6 +88,7 @@ def calculate():
     cins_level_kar = fuzz.interp_membership(x_bulasik_cins, bulasik_cins_kar, input_cins)
     cins_level_guc = fuzz.interp_membership(x_bulasik_cins, bulasik_cins_guc, input_cins)
 
+    # (Kural Tabanını Tanımlayıp uyguladık)
     # *Kural Tabanı Rule Base
     zaman_activation_ck = zaman_activation_k =  zaman_activation_o =  zaman_activation_u =  zaman_activation_cu = 0
     deterjan_activation_ca =  deterjan_activation_a =  deterjan_activation_n = deterjan_activation_c = deterjan_activation_cf = 0
@@ -99,7 +102,9 @@ def calculate():
     pompa devri çok düşük ve alt pompa devri çok düşük.
     IF (miktar-az & kirlilik-az & cins-has) THEN zaman-ck, deterjan-ca, sıcaklık-d, ust-pompa-cd, alt-pompa-cd
     """
+    #kural 1
     rule1 = np.fmin(miktar_level_az, np.fmin(kirlilik_level_az, cins_level_has))
+    #kuralın uygulanması
     zaman_activation_ck = np.fmin(rule1, yikama_zaman_ck)
     deterjan_activation_ca = np.fmax(deterjan_activation_ca, np.fmin(rule1, deterjan_miktar_ca))
     sicaklik_activation_dus = np.fmax(sicaklik_activation_dus, np.fmin(rule1, su_sicaklik_dus))
@@ -262,24 +267,29 @@ def calculate():
     alt_pompa_activation_o =  np.fmax(alt_pompa_activation_o, np.fmin(rule16, alt_pompa_o))
 
 
-    # *Aggregation ve Defuzzification
+    # *Aggregation ve Defuzzification Durulama
     zaman_aggregated = np.fmax(zaman_activation_ck, np.fmax(zaman_activation_k, np.fmax(zaman_activation_o, np.fmax(zaman_activation_u, zaman_activation_cu))))
+    # zaman durulama sonucu (crips)
     zaman_defuzz = fuzz.defuzz(yikama_zaman, zaman_aggregated, 'centroid')                  # crips
     zaman_activation = fuzz.interp_membership(yikama_zaman, zaman_aggregated, zaman_defuzz) # membership value
     
     deterjan_aggregated = np.fmax(deterjan_activation_ca, np.fmax(deterjan_activation_a, np.fmax(deterjan_activation_n,np.fmax(deterjan_activation_c, deterjan_activation_cf))))
+    # deterjan durulama sonucu (crips)
     deterjan_defuzz = fuzz.defuzz(deterjan_miktar, deterjan_aggregated, 'centroid')                     # crips
     deterjan_activation = fuzz.interp_membership(deterjan_miktar, deterjan_aggregated, deterjan_defuzz) # membership value
     
     sicaklik_aggregated = np.fmax(sicaklik_activation_dus, np.fmax(sicaklik_activation_nor, sicaklik_activation_yuk))
+    # sicaklık durulama sonucu (crips)
     sicaklik_defuzz = fuzz.defuzz(su_sicaklik, sicaklik_aggregated, 'centroid')                     # crips
     sicaklik_activation = fuzz.interp_membership(su_sicaklik, sicaklik_aggregated, sicaklik_defuzz) # membership value
     
     alt_pompa_aggregated = np.fmax(alt_pompa_activation_cd, np.fmax(alt_pompa_activation_d ,np.fmax(alt_pompa_activation_o, np.fmax(alt_pompa_activation_y ,alt_pompa_activation_cy))))
+    # alt pompa devir durulama sonucu (crips)
     alt_pompa_defuzz = fuzz.defuzz(alt_pompa, alt_pompa_aggregated, 'centroid')                      # crips
     alt_pompa_activation = fuzz.interp_membership(alt_pompa, alt_pompa_aggregated, alt_pompa_defuzz) # membership value
     
     ust_pompa_aggregated = np.fmax(ust_pompa_activation_cd, np.fmax(ust_pompa_activation_d, np.fmax(ust_pompa_activation_o, np.fmax(ust_pompa_activation_y, ust_pompa_activation_cy))))
+    # ust pompa devir durulama sonucu (crips)
     ust_pompa_defuzz = fuzz.defuzz(ust_pompa, ust_pompa_aggregated, 'centroid')                      # crips
     ust_pompa_activation = fuzz.interp_membership(ust_pompa, ust_pompa_aggregated, ust_pompa_defuzz) # membership value
 
@@ -523,7 +533,7 @@ def show_result_3d():
 
     plt.show()
 
-
+#input_plot()
 #output_plot()
 #show_result_plot()
 #show_result_3d()
